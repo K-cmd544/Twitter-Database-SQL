@@ -1,0 +1,68 @@
+                         ┌──────────────────┐
+                         │      USERS       │
+                         ├──────────────────┤
+                         │ PK UserID        │
+                         │ Email            │
+                         │ Password         │
+                         │ CreatedAt        │
+                         └────────┬─────────┘
+                                  │
+                                  │ 1 : 1
+                                  │
+                         ┌────────▼─────────┐
+                         │     PROFILES     │
+                         ├──────────────────┤
+                         │ PK ProfileID     │
+                         │ FK UserID        │
+                         │ Username         │
+                         │ Bio              │
+                         └──────────────────┘
+
+
+        ┌───────────────────────┐
+        │         USERS         │
+        └───────────┬───────────┘
+                    │
+                    │ 1 : N
+                    ▼
+             ┌──────────────┐
+             │    TWEETS    │
+             ├──────────────┤
+             │ PK TweetID   │
+             │ FK UserID    │
+             │ Content      │
+             │ CreatedAt    │
+             └──────┬───────┘
+                    │
+                    │ 1 : N
+                    ▼
+             ┌──────────────┐
+             │    LIKES     │
+             ├──────────────┤
+             │ PK LikeID    │
+             │ FK UserID    │
+             │ FK TweetID   │
+             │ LikedAt      │
+             └──────▲───────┘
+                    │
+                    │ N : 1
+                    │
+             ┌──────┴───────┐
+             │     USERS    │
+             └──────────────┘
+
+
+       ┌─────────────────────────────┐
+       │           FOLLOWS           │
+       ├─────────────────────────────┤
+       │ PK FollowID                 │
+       │ FK FollowerID  → Users      │
+       │ FK FollowingID → Users      │
+       │ FollowedAt                  │
+       └─────────────────────────────┘
+              ▲              ▲
+              │              │
+              │              │
+           Follower       Following
+              │              │
+              └──── USERS ───┘
